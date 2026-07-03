@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>{{PRODUCT_NAME}} | {{STORE_NAME}}</title>
+  <meta name="description" content="{{PRODUCT_DESCRIPTION}} Shop securely on eBay with full buyer protection. View the listing from {{STORE_NAME}}." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="{{SITE_URL}}" />
+
+  <!-- ─── OPEN GRAPH ─── -->
+  <meta property="og:type"        content="product" />
+  <meta property="og:title"       content="{{PRODUCT_NAME}} | {{STORE_NAME}}" />
+  <meta property="og:description" content="{{PRODUCT_DESCRIPTION}}" />
+  <meta property="og:image"       content="{{PRODUCT_IMAGE}}" />
+  <meta property="og:url"         content="{{SITE_URL}}" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="{{PRODUCT_NAME}} | {{STORE_NAME}}" />
+  <meta name="twitter:description" content="{{PRODUCT_DESCRIPTION}}" />
+  <meta name="twitter:image"      content="{{PRODUCT_IMAGE}}" />
+
+  <!-- ─── FAVICON ─── -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230057D9'/><text x='18' y='72' font-family='Arial Black' font-weight='900' font-size='60' fill='white'>S</text></svg>" />
+
+  <!-- ─── STRUCTURED DATA ─── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{PRODUCT_NAME}}",
+    "description": "{{PRODUCT_DESCRIPTION}}",
+    "image": "{{PRODUCT_IMAGE}}",
+    "brand": { "@type": "Brand", "name": "{{STORE_NAME}}" },
+    "offers": {
+      "@type": "Offer",
+      "price": "{{PRICE_NUMBER}}",
+      "priceCurrency": "GBP",
+      "availability": "https://schema.org/InStock",
+      "url": "{{EBAY_LINK}}",
+      "seller": { "@type": "Organization", "name": "{{STORE_NAME}}" }
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══ RESET & VARS ═══ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #0057D9;
+      --blue-dark:   #003FA8;
+      --blue-light:  #EBF2FF;
+      --yellow:      #F5A700;
+      --yellow-dark: #D48E00;
+      --yellow-light:#FFF8E6;
+      --text:        #1C1C1E;
+      --text-muted:  #6B7280;
+      --bg:          #FFFFFF;
+      --bg-subtle:   #F9FAFB;
+      --bg-dark:     #0F172A;
+      --border:      #E5E7EB;
+      --green:       #059669;
+      --green-light: #ECFDF5;
+      --red:         #DC2626;
+      --font: 'Inter', -apple-system, sans-serif;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══ UTILITY ═══ */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section   { padding: 80px 0; }
+    .section--subtle { background: var(--bg-subtle); }
+    .section--dark   { background: var(--bg-dark); color: #fff; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .section--dark .eyebrow { background: rgba(255,255,255,0.1); color: #93C5FD; }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .section--dark .section-sub { color: rgba(255,255,255,0.65); }
+
+    /* ═══ BUTTONS ═══ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:hover  { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--text);
+      box-shadow: 0 4px 14px rgba(245,167,0,0.4);
+    }
+    .btn-primary:hover {
+      background: var(--yellow-dark);
+      box-shadow: 0 6px 20px rgba(245,167,0,0.5);
+    }
+
+    .btn-secondary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(0,87,217,0.3);
+    }
+    .btn-secondary:hover {
+      background: var(--blue-dark);
+      box-shadow: 0 6px 20px rgba(0,87,217,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline:hover { background: var(--blue-light); }
+
+    .btn-lg { font-size: 1.1rem; padding: 1.1rem 2.5rem; border-radius: 12px; }
+
+    /* ═══ NAVIGATION ═══ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--blue); }
+
+    .nav-cta { display: none; }
+
+    @media (min-width: 640px) {
+      .nav-cta { display: inline-flex; }
+    }
+
+    /* ═══ HERO ═══ */
+    #hero {
+      background: linear-gradient(135deg, #F0F5FF 0%, #EBF2FF 40%, #F9FAFB 100%);
+      padding: 60px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--green-light);
+      border: 1px solid rgba(5,150,105,0.2);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badge::before { content: '●'; font-size: 0.6rem; }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .hero-title .highlight { color: var(--blue); }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.04em;
+    }
+
+    .hero-price-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-trust-mini {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-trust-mini svg { flex-shrink: 0; }
+
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-image-inner {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Placeholder if no image */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #E0EAFF, #C7D9FF);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-height: 320px;
+    }
+
+    .hero-ebay-badge {
+      position: absolute;
+      bottom: -16px;
+      right: 16px;
+      background: white;
+      border-radius: 100px;
+      padding: 0.6rem 1.25rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ═══ TRUST STRIP ═══ */
+    #trust-strip {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .trust-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 1rem 0;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 2rem;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .trust-item:last-child { border-right: none; }
+
+    .trust-item-icon {
+      width: 36px; height: 36px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-item-text strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .trust-item-text span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .trust-item { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
+      .trust-item:last-child { border-bottom: none; }
+    }
+
+    /* ═══ BENEFITS ═══ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .benefit-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .benefit-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .benefit-icon {
+      width: 52px; height: 52px;
+      background: var(--blue-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .benefit-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .benefit-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ═══ PRODUCT HIGHLIGHTS ═══ */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .highlights-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .highlight-image {
+      background: var(--bg-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .highlight-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .feature-check {
+      width: 22px; height: 22px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .feature-check svg { stroke: white; }
+
+    .feature-item-text strong {
+      display: block;
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .feature-item-text span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ═══ TESTIMONIALS ═══ */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+
+    .testimonial-card:hover { box-shadow: var(--shadow-md); }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; right: 1.25rem;
+      font-size: 4rem;
+      color: var(--border);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .stars {
+      color: #F59E0B;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-size: 0.85rem; font-weight: 700; }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    /* ═══ EBAY TRUST ═══ */
+    .ebay-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .ebay-trust-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .ebay-trust-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .ebay-trust-card h4 { font-size: 0.925rem; font-weight: 700; margin-bottom: 0.3rem; color: white; }
+    .ebay-trust-card p  { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ═══ FAQ ═══ */
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      background: white;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+
+    .faq-question:hover { background: var(--bg-subtle); }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      transition: transform 0.25s;
+      color: var(--text-muted);
+    }
+
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .faq-answer-inner a { color: var(--blue); text-decoration: underline; }
+
+    /* ═══ FINAL CTA ═══ */
+    .final-cta-box {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final-cta-box .section-title { color: white; }
+
+    .price-display {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--yellow);
+      letter-spacing: -0.04em;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .cta-disclaimer {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    .cta-guarantee-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .cta-guarantee-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      background: #0A0F1E;
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer strong { color: rgba(255,255,255,0.75); }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    .disclaimer-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    /* ═══ STICKY MOBILE CTA ═══ */
+    #sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 900;
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    #sticky-cta.visible { transform: translateY(0); }
+
+    .sticky-cta-info { flex: 1; min-width: 0; }
+    .sticky-cta-name { font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sticky-cta-price { font-size: 1.1rem; font-weight: 900; color: var(--blue); }
+
+    @media (min-width: 768px) { #sticky-cta { display: none; } }
+
+    /* ═══ SCROLL REVEAL ═══ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ═══ ACCESSIBILITY ═══ */
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-brand">{{STORE_NAME}} <span>●</span></div>
+  <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary nav-cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    View on eBay
+  </a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="hero-content">
+        <div class="hero-badge">In Stock — Available on eBay</div>
+        <h1 class="hero-title">
+          <span class="highlight">{{PRODUCT_NAME}}</span>
+        </h1>
+        <p class="hero-desc">{{PRODUCT_DESCRIPTION}}</p>
+
+        <div class="hero-price-row">
+          <div class="hero-price">{{PRICE}}</div>
+          <div class="hero-price-label">on eBay<br>incl. buyer protection</div>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary btn-lg">
+            🛒 Buy Securely on eBay
+          </a>
+          <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-outline">
+            Check Availability
+          </a>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:1.25rem;">
+          <div class="hero-trust-mini">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            eBay Buyer Protection
+          </div>
+          <div class="hero-trust-mini">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Secure Checkout
+          </div>
+          <div class="hero-trust-mini">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Fast UK Dispatch
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-image-inner">
+          <img
+            src="{{PRODUCT_IMAGE}}"
+            alt="{{PRODUCT_NAME}}"
+            loading="eager"
+            onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'64\' height=\'64\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><span>{{PRODUCT_NAME}}</span></div>'"
+          />
+        </div>
+        <div class="hero-ebay-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Listed on eBay
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRUST STRIP ─── -->
+<div id="trust-strip">
+  <div class="container">
+    <div class="trust-strip-inner">
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-item-text">
+          <strong>eBay Buyer Protection</strong>
+          <span>Covered on every order</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="trust-item-text">
+          <strong>Secure Payment</strong>
+          <span>PayPal, card &amp; more</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="trust-item-text">
+          <strong>Fast UK Dispatch</strong>
+          <span>Tracked delivery</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.22"/></svg>
+        </div>
+        <div class="trust-item-text">
+          <strong>Easy Returns</strong>
+          <span>eBay returns policy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── BENEFITS ─── -->
+<section class="section section--subtle" id="benefits">
+  <div class="container">
+    <span class="eyebrow reveal">Why Choose This</span>
+    <h2 class="section-title reveal">Everything you need to know</h2>
+    <p class="section-sub reveal">{{PRODUCT_NAME}} is available from {{STORE_NAME}} on eBay — one of the UK's most trusted online marketplaces.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">✅</div>
+        <h3>Verified Seller</h3>
+        <p>{{STORE_NAME}} is a trusted seller on eBay with a strong feedback score and established track record.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">📦</div>
+        <h3>Genuine Product</h3>
+        <p>All items are genuine, accurately described, and shipped with care. What you see is what you get.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">🔒</div>
+        <h3>Safe Transaction</h3>
+        <p>Your payment is processed securely through eBay. If something goes wrong, eBay's Money Back Guarantee has you covered.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon">⭐</div>
+        <h3>Top-Rated Service</h3>
+        <p>Fast dispatch, tracked shipping, and responsive customer service. Hundreds of happy customers and counting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUCT HIGHLIGHTS ─── -->
+<section class="section" id="product">
+  <div class="container">
+    <div class="highlights-grid">
+
+      <div class="highlight-image reveal">
+        <img
+          src="{{PRODUCT_IMAGE}}"
+          alt="{{PRODUCT_NAME}} detail"
+          loading="lazy"
+          onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(135deg,#E0EAFF,#C7D9FF);display:flex;align-items:center;justify-content:center;font-size:4rem;\'>📦</div>'"
+        />
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <span class="eyebrow">Product Features</span>
+        <h2 class="section-title">What makes this product stand out</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:0.5rem;">{{PRODUCT_DESCRIPTION}}</p>
+
+        <ul class="feature-list">
+          <li class="feature-item">
+            <div class="feature-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-item-text">
+              <strong>{{FEATURE_1_TITLE}}</strong>
+              <span>{{FEATURE_1_DESC}}</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-item-text">
+              <strong>{{FEATURE_2_TITLE}}</strong>
+              <span>{{FEATURE_2_DESC}}</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-item-text">
+              <strong>{{FEATURE_3_TITLE}}</strong>
+              <span>{{FEATURE_3_DESC}}</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-item-text">
+              <strong>{{FEATURE_4_TITLE}}</strong>
+              <span>{{FEATURE_4_DESC}}</span>
+            </div>
+          </li>
+        </ul>
+
+        <div style="margin-top:2rem;">
+          <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary">
+            🛒 View Full Listing on eBay
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section section--subtle" id="reviews">
+  <div class="container">
+    <span class="eyebrow reveal">Customer Reviews</span>
+    <h2 class="section-title reveal">What buyers are saying</h2>
+    <p class="section-sub reveal">Reviews from verified buyers on eBay.</p>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"{{REVIEW_1_TEXT}}"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: linear-gradient(135deg,#0057D9,#60A5FA);">{{REVIEW_1_INITIALS}}</div>
+          <div>
+            <div class="author-name">{{REVIEW_1_NAME}}</div>
+            <div class="author-meta">{{REVIEW_1_DATE}}</div>
+            <div class="verified-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#059669"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified eBay Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"{{REVIEW_2_TEXT}}"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: linear-gradient(135deg,#7C3AED,#A78BFA);">{{REVIEW_2_INITIALS}}</div>
+          <div>
+            <div class="author-name">{{REVIEW_2_NAME}}</div>
+            <div class="author-meta">{{REVIEW_2_DATE}}</div>
+            <div class="verified-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#059669"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified eBay Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"{{REVIEW_3_TEXT}}"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: linear-gradient(135deg,#D97706,#FCD34D);">{{REVIEW_3_INITIALS}}</div>
+          <div>
+            <div class="author-name">{{REVIEW_3_NAME}}</div>
+            <div class="author-meta">{{REVIEW_3_DATE}}</div>
+            <div class="verified-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#059669"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified eBay Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── EBAY TRUST ─── -->
+<section class="section section--dark" id="trust">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <span class="eyebrow reveal">Buying With Confidence</span>
+      <h2 class="section-title reveal" style="color:white;">Why buy through eBay?</h2>
+      <p class="section-sub reveal" style="margin:0 auto;">eBay is one of the world's most trusted marketplaces — your purchase is protected every step of the way.</p>
+    </div>
+
+    <div class="ebay-trust-grid">
+      <div class="ebay-trust-card reveal">
+        <div class="icon">🛡️</div>
+        <h4>Money Back Guarantee</h4>
+        <p>If your item doesn't arrive or isn't as described, eBay's Money Back Guarantee covers you — no questions asked.</p>
+      </div>
+      <div class="ebay-trust-card reveal reveal-delay-1">
+        <div class="icon">🔐</div>
+        <h4>Secure Payments</h4>
+        <p>Pay by PayPal, credit/debit card, Apple Pay or Google Pay. All transactions are encrypted and protected.</p>
+      </div>
+      <div class="ebay-trust-card reveal reveal-delay-2">
+        <div class="icon">↩️</div>
+        <h4>Easy Returns</h4>
+        <p>Returns are handled simply through eBay's returns system. Buyers are protected under eBay's returns policy.</p>
+      </div>
+      <div class="ebay-trust-card reveal reveal-delay-3">
+        <div class="icon">📞</div>
+        <h4>24/7 Support</h4>
+        <p>eBay's customer support team is available to help with any issues, disputes, or questions about your order.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1rem;">
+      <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary btn-lg reveal">
+        🛒 Buy Securely on eBay — {{PRICE}}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="section" id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="section-title reveal">Frequently asked questions</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Where do I complete my purchase?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">
+            All purchases are completed directly on eBay. Clicking any "View on eBay" or "Buy on eBay" button will take you to the official eBay listing for {{PRODUCT_NAME}} from {{STORE_NAME}}. This website is an informational showcase only — no transactions take place here.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is my payment secure?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">
+            Yes. All payments are processed securely through eBay using PayPal, credit/debit cards, Apple Pay, or Google Pay. eBay uses industry-standard encryption and your card details are never stored by the seller. You are also covered by eBay's Money Back Guarantee.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What if I need to return the item?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">
+            Returns are managed through eBay's returns system. If the item is not as described or arrives damaged, eBay's Money Back Guarantee means you can return it for a full refund. Please refer to the specific returns policy shown on the eBay listing for full details.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How quickly will I receive my order?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">
+            Delivery times and shipping options are listed directly on the eBay listing. {{STORE_NAME}} typically dispatches orders quickly with tracked shipping. For exact delivery estimates, please check the listing on eBay where up-to-date delivery information is shown.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Why is this website separate from eBay?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">
+            This website is a product showcase and signpost page that provides additional information about {{PRODUCT_NAME}} from {{STORE_NAME}}. It is not affiliated with, endorsed by, or operated by eBay Inc. All purchases are made on eBay and are subject to eBay's terms and conditions.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          {{FAQ_6_QUESTION}}
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">{{FAQ_6_ANSWER}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="section section--dark" id="buy">
+  <div class="container">
+    <div class="final-cta-box">
+      <span class="eyebrow reveal">Ready to Buy?</span>
+      <h2 class="section-title reveal">Get yours today on eBay</h2>
+      <p class="section-sub reveal" style="margin: 0.5rem auto 0;">{{PRODUCT_NAME}} — available now from {{STORE_NAME}} on eBay with full buyer protection.</p>
+
+      <div class="price-display reveal">{{PRICE}}</div>
+
+      <div class="reveal">
+        <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary btn-lg" style="font-size:1.2rem; padding: 1.2rem 3rem;">
+          🛒 Buy Securely on eBay
+        </a>
+        <p class="cta-disclaimer">Clicking this button will take you to the eBay listing for this product. This website is not affiliated with eBay Inc. All transactions are subject to eBay's terms of service.</p>
+      </div>
+
+      <div class="cta-guarantee-row reveal">
+        <div class="cta-guarantee-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          eBay Buyer Protection
+        </div>
+        <div class="cta-guarantee-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Secure Payment
+        </div>
+        <div class="cta-guarantee-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.22"/></svg>
+          Easy Returns
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-links">
+    <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored">View on eBay</a>
+    <a href="#faq">FAQ</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#trust">Buyer Protection</a>
+  </div>
+
+  <div class="disclaimer-box">
+    <strong>Disclosure &amp; Disclaimer:</strong> This website is an independent product showcase for <strong>{{PRODUCT_NAME}}</strong> sold by <strong>{{STORE_NAME}}</strong>. This site is not affiliated with, endorsed by, or operated by eBay Inc. All purchases are completed on eBay and are subject to eBay's terms, conditions, and buyer protection policies. Prices and availability are subject to change — please refer to the live eBay listing for current information. This page may contain affiliate or referral links.
+  </div>
+
+  <p>© <span id="yr"></span> {{STORE_NAME}}. All rights reserved. eBay® is a registered trademark of eBay Inc. This website is independently operated.</p>
+</footer>
+
+<!-- ─── STICKY MOBILE CTA ─── -->
+<div id="sticky-cta" aria-hidden="true">
+  <div class="sticky-cta-info">
+    <div class="sticky-cta-name">{{PRODUCT_NAME}}</div>
+    <div class="sticky-cta-price">{{PRICE}}</div>
+  </div>
+  <a href="{{EBAY_LINK}}" target="_blank" rel="noopener noreferrer sponsored" class="btn btn-primary">
+    Buy on eBay →
+  </a>
+</div>
+
+<script>
+  /* ─── CONFIG ─────────────────────────
+     To update the eBay link sitewide,
+     change the value below.
+  ────────────────────────────────────── */
+  const EBAY_LINK = '{{EBAY_LINK}}';
+
+  /* ─── YEAR ─── */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ─── SCROLL REVEAL ─── */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  /* ─── HERO REVEALS IMMEDIATELY ─── */
+  setTimeout(() => {
+    document.querySelectorAll('#hero .reveal, nav .reveal').forEach(el => el.classList.add('visible'));
+  }, 50);
+
+  /* ─── FAQ ACCORDION ─── */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ─── STICKY MOBILE CTA ─── */
+  const hero = document.getElementById('hero');
+  const stickyCta = document.getElementById('sticky-cta');
+  const observer = new IntersectionObserver(([entry]) => {
+    stickyCta.classList.toggle('visible', !entry.isIntersecting);
+    stickyCta.setAttribute('aria-hidden', String(entry.isIntersecting));
+  }, { threshold: 0 });
+  observer.observe(hero);
+
+  /* ─── SMOOTH ANCHOR SCROLL ─── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

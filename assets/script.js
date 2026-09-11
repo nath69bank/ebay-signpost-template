@@ -74,14 +74,33 @@
     });
   });
 
-  /* ─── STICKY MOBILE CTA ─── */
+  /* ─── STICKY MOBILE CTA (hidden over the hero and again once the footer's own CTA is reachable) ─── */
   const stickyCta = document.getElementById('sticky-cta');
+  const siteFooter = document.getElementById('site-footer');
   if (stickyCta && hero && 'IntersectionObserver' in window) {
+    let heroVisible = true;
+    let footerVisible = false;
+    const sync = () => {
+      const show = !heroVisible && !footerVisible;
+      stickyCta.classList.toggle('visible', show);
+      stickyCta.setAttribute('aria-hidden', String(!show));
+    };
+    new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; sync(); }, { threshold: 0 }).observe(hero);
+    if (siteFooter) {
+      new IntersectionObserver(([entry]) => { footerVisible = entry.isIntersecting; sync(); }, { threshold: 0, rootMargin: '0px 0px -200px 0px' }).observe(siteFooter);
+    }
+  }
+
+  /* ─── BACK TO TOP ─── */
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop && hero && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(([entry]) => {
-      stickyCta.classList.toggle('visible', !entry.isIntersecting);
-      stickyCta.setAttribute('aria-hidden', String(entry.isIntersecting));
+      backToTop.classList.toggle('visible', !entry.isIntersecting);
     }, { threshold: 0 });
     io.observe(hero);
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
   }
 
   /* ─── SMOOTH ANCHOR SCROLL ─── */

@@ -1,0 +1,14 @@
+{
+  "name": "Ken Suya",
+  "short_name": "Ken Suya",
+  "description": "Suya that makes your tastebuds dance. Order online for collection or delivery in Birmingham.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFCF6",
+  "theme_color": "#2B0705",
+  "icons": [
+    { "src": "assets/images/favicon-64.jpg", "sizes": "64x64", "type": "image/jpeg" },
+    { "src": "assets/images/favicon-180.jpg", "sizes": "180x180", "type": "image/jpeg" }
+  ]
+}

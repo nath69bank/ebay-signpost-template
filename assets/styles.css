@@ -4,6 +4,25 @@
    Palette sampled directly from the brand logo.
    ══════════════════════════════════════════════════════════ */
 
+/* Self-hosted variable fonts — avoids the extra DNS/TLS round trip to
+   fonts.googleapis.com/fonts.gstatic.com. Each file is a single variable
+   font covering its whole weight range. */
+@font-face {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url('fonts/baloo2-variable.woff2') format('woff2-variations'), url('fonts/baloo2-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('fonts/nunitosans-variable.woff2') format('woff2-variations'), url('fonts/nunitosans-variable.woff2') format('woff2');
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -1524,6 +1543,36 @@ footer {
 .sticky-cta-text span { font-size: 0.72rem; color: rgba(255,252,246,0.6); }
 
 @media (min-width: 960px) { #sticky-cta { display: none; } }
+
+/* ═══ BACK TO TOP ═══ */
+#back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 850;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--maroon);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), background 0.2s var(--ease);
+}
+
+#back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#back-to-top:hover { background: var(--red); }
+
+@media (max-width: 959px) {
+  #back-to-top { bottom: 5.75rem; right: 1rem; width: 42px; height: 42px; }
+}
 
 /* ═══ UTILITY ═══ */
 .text-center { text-align: center; }

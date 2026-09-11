@@ -90,6 +90,13 @@
     <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.8-4.3 6.4-.6z" fill="currentColor"/></symbol>
+
+    <filter id="heatShimmer" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" numOctaves="2" seed="4" result="turb">
+        <animate attributeName="baseFrequency" values="0.012 0.045;0.02 0.07;0.012 0.045" dur="7s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="14" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
   </defs>
 </svg>
 
@@ -164,11 +171,13 @@
         <div class="hero-meta-row">
           <div class="hero-meta"><svg width="16" height="16"><use href="#icon-star"/></svg> 4.9 · Customer Rated</div>
           <div class="hero-meta"><svg width="16" height="16"><use href="#icon-bike"/></svg> Collection &amp; Delivery</div>
+          <div class="hero-meta"><svg width="16" height="16"><use href="#icon-whatsapp"/></svg> No Booking Needed</div>
           <div class="hero-meta"><svg width="16" height="16"><use href="#icon-pin"/></svg> Birmingham, UK</div>
         </div>
       </div>
 
       <div class="hero-visual" aria-hidden="true">
+        <div class="smoke-wisps"></div>
         <div class="hero-flame-glow"></div>
         <div class="hero-badge-plate">
           <div class="hero-sticker">
@@ -179,6 +188,7 @@
       </div>
 
     </div>
+    <div class="heat-wave" aria-hidden="true"></div>
     <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><span class="stick"></span></div>
   </section>
 
@@ -192,6 +202,40 @@
       <div class="usp-item"><span class="icon"><svg width="22" height="22"><use href="#icon-users"/></svg></span><span>Party Platters Available</span></div>
     </div>
   </div>
+
+  <!-- ═══════════════ HOW TO ORDER ═══════════════ -->
+  <section class="section how-section" id="how">
+    <div class="container">
+      <span class="eyebrow reveal">How It Works</span>
+      <h2 class="section-title reveal">Message. Grill. Collect.</h2>
+      <p class="section-sub reveal">No app, no account, no faff — just message us and we'll sort the rest.</p>
+
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <span class="num">01</span>
+          <h3><svg width="18" height="18"><use href="#icon-whatsapp"/></svg> Message Us</h3>
+          <p>WhatsApp or DM @KenSuya with what you're after — beef, chicken, lamb, or the full platter.</p>
+        </div>
+        <div class="how-card reveal reveal-d1">
+          <span class="num">02</span>
+          <h3><svg width="18" height="18"><use href="#icon-check"/></svg> We Confirm</h3>
+          <p>We'll confirm your price, timing, and whether it's collection or delivery to your door.</p>
+        </div>
+        <div class="how-card reveal reveal-d2">
+          <span class="num">03</span>
+          <h3><svg width="18" height="18"><use href="#icon-flame"/></svg> On The Grill</h3>
+          <p>Nothing's cooked until it's ordered. Every skewer goes on the drum once you're confirmed.</p>
+        </div>
+        <div class="how-card reveal reveal-d3">
+          <span class="num">04</span>
+          <h3><svg width="18" height="18"><use href="#icon-bike"/></svg> Collect Or Delivered</h3>
+          <p>Pick it up hot, or we'll bring it to you. Either way, straight off the skewer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-stripe" aria-hidden="true"></div>
 
   <!-- ═══════════════ THE EXPERIENCE ═══════════════ -->
   <section class="section experience" id="experience">
@@ -240,7 +284,7 @@
             <span class="menu-card-tag">Signature</span>
             <h3>Beef Suya</h3>
             <p>Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame. The one that started it all.</p>
-            <div class="menu-card-price"><strong>£8.00</strong><svg width="20" height="20"><use href="#icon-flame"/></svg></div>
+            <div class="menu-card-price"><strong>£8.00</strong><svg width="20" height="20" class="icon-flicker"><use href="#icon-flame"/></svg></div>
           </div>
         </article>
 
@@ -337,6 +381,7 @@
   <!-- ═══════════════ FIRE / CRAFT FEATURE ═══════════════ -->
   <section class="fire-section" id="fire">
     <div class="fire-embers" aria-hidden="true"></div>
+    <div class="heat-wave" aria-hidden="true"></div>
     <div class="container fire-content">
       <span class="eyebrow reveal">How We Cook</span>
       <h2 class="fire-title reveal">On The <span class="accent">Grill.</span><br>In The <span class="accent2">Spice.</span></h2>
@@ -435,7 +480,7 @@
           <div class="loc-map-grid" aria-hidden="true"></div>
           <div class="loc-map-glow" aria-hidden="true"></div>
           <div class="loc-pin" aria-hidden="true">
-            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#2B0705" stroke-width="2"><use href="#icon-flame"/></svg></div>
+            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#2B0705" stroke-width="2" class="icon-flicker"><use href="#icon-flame"/></svg></div>
           </div>
           <div class="loc-map-label">
             <span class="name">Ken Suya</span>

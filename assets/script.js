@@ -133,6 +133,21 @@
     }
   }
 
+  /* ─── SMOKE WISPS (hero) ─── */
+  const smokeField = document.querySelector('.smoke-wisps');
+  if (smokeField && !prefersReducedMotion) {
+    const count = 5;
+    for (let i = 0; i < count; i++) {
+      const wisp = document.createElement('span');
+      wisp.className = 'smoke';
+      wisp.style.left = `${20 + Math.random() * 60}%`;
+      wisp.style.animationDelay = `${Math.random() * 9}s`;
+      wisp.style.animationDuration = `${8 + Math.random() * 4}s`;
+      wisp.style.setProperty('--drift', `${(Math.random() - 0.5) * 80}px`);
+      smokeField.appendChild(wisp);
+    }
+  }
+
   /* ─── SUBTLE HERO PARALLAX ─── */
   const badgePlate = document.querySelector('.hero-badge-plate');
   if (badgePlate && !prefersReducedMotion && window.matchMedia('(min-width: 768px)').matches) {

@@ -225,6 +225,139 @@
     }
   }
 
+  /* ─── CHAT ASSISTANT ─── */
+  const WA_LINK = 'https://wa.me/447960235758';
+  const waButton = label => `<a class="chat-wa-btn" href="${WA_LINK}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#icon-whatsapp"/></svg>${label}</a>`;
+
+  const CHAT_KB = [
+    { keywords: ['hi', 'hello', 'hey', 'yo', 'sup'], reply: `Hey! I'm the Ken Suya assistant. Ask me about the menu, prices, hours, delivery — or say "order" to jump straight to WhatsApp.` },
+    { keywords: ['menu', 'food', 'items', 'options'], reply: `Here's what's on: <br>• Beef Suya — £8.00<br>• Lamb Suya — £9.00<br>• Chicken Suya — £7.50<br>• Party Platters — from £45.00<br>• Extra-Spicy Special — £8.50<br>All hand-rolled in our own yaji spice and grilled fresh to order.` },
+    { keywords: ['beef'], reply: `Beef Suya (£8.00) — our signature. Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame.` },
+    { keywords: ['lamb'], reply: `Lamb Suya (£9.00) — tender lamb, double-dusted in yaji, char-grilled till the edges catch. A fan favourite.` },
+    { keywords: ['chicken'], reply: `Chicken Suya (£7.50) — juicy chicken thigh, grilled hot and finished with fresh onion and tomato.` },
+    { keywords: ['party', 'platter', 'catering', 'cater', 'event', 'group', 'wedding', 'birthday'], reply: `Party Platters start from £45.00 and mix beef, chicken and lamb — built for guests. ${waButton('Message us your headcount & date')}` },
+    { keywords: ['spicy', 'hot', 'heat', 'chilli', 'chili'], reply: `The Extra-Spicy Special (£8.50) is for the brave — extra yaji, extra heat. If you're not sure, start with the regular suya first!` },
+    { keywords: ['hour', 'hours', 'open', 'time', 'closed', 'closing'], reply: `Tue–Thu 16:00–21:00 · Fri–Sat 12:00–23:00 · Sun 13:00–20:00. Closed Mondays.` },
+    { keywords: ['where', 'location', 'address', 'find', 'directions'], reply: `Unit 4, Greenfield Business Park, Birmingham, B11 2AA — collection & delivery only, no dine-in seating.` },
+    { keywords: ['deliver', 'delivery', 'collect', 'collection', 'pickup', 'pick up'], reply: `We deliver across Birmingham and also do collection — just tell us your postcode or pickup time when you order.` },
+    { keywords: ['halal'], reply: `Message us on WhatsApp or Instagram before ordering and we'll happily confirm sourcing for you. ${waButton('Ask about halal sourcing')}` },
+    { keywords: ['order', 'book', 'booking', 'reserve', 'reservation'], reply: `Orders go through WhatsApp — no app or account needed. Tell us what you'd like and we'll confirm price, timing, and collection or delivery. ${waButton('Order on WhatsApp')}` },
+    { keywords: ['contact', 'phone', 'number', 'whatsapp', 'call', 'human', 'person'], reply: `Call or WhatsApp +44 7960 235758. ${waButton('Chat on WhatsApp')}` },
+    { keywords: ['thanks', 'thank you', 'cheers', 'ta'], reply: `You're welcome! Anything else — menu, hours, or ready to order?` },
+  ];
+
+  const CHAT_FALLBACK = `I might not have that one exactly, but the team will! ${waButton('Ask on WhatsApp')}`;
+  const CHAT_SUGGESTIONS = ['Menu & prices', 'Opening hours', 'Delivery area', 'Order now'];
+
+  function chatMatch(input) {
+    const text = input.toLowerCase();
+    let best = null;
+    let bestScore = 0;
+    CHAT_KB.forEach(entry => {
+      const score = entry.keywords.reduce((acc, kw) => acc + (text.includes(kw) ? 1 : 0), 0);
+      if (score > bestScore) { bestScore = score; best = entry; }
+    });
+    return best ? best.reply : CHAT_FALLBACK;
+  }
+
+  (function initChat() {
+    const widget = document.getElementById('chat-widget');
+    const launcher = document.getElementById('chat-launcher');
+    const panel = document.getElementById('chat-panel');
+    const closeBtn = document.getElementById('chat-close');
+    const messagesEl = document.getElementById('chat-messages');
+    const suggestionsEl = document.getElementById('chat-suggestions');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    if (!widget || !launcher || !panel || !messagesEl || !form || !input) return;
+
+    let started = false;
+
+    const scrollToBottom = () => { messagesEl.scrollTop = messagesEl.scrollHeight; };
+
+    const addMessage = (html, who) => {
+      const el = document.createElement('div');
+      el.className = `chat-msg ${who}`;
+      if (who === 'user') {
+        el.textContent = html;
+      } else {
+        el.innerHTML = html;
+      }
+      messagesEl.appendChild(el);
+      scrollToBottom();
+    };
+
+    const addTyping = () => {
+      const el = document.createElement('div');
+      el.className = 'chat-msg bot chat-typing-wrap';
+      el.innerHTML = '<span class="chat-typing"><span></span><span></span><span></span></span>';
+      messagesEl.appendChild(el);
+      scrollToBottom();
+      return el;
+    };
+
+    const renderSuggestions = list => {
+      suggestionsEl.innerHTML = '';
+      list.forEach(label => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chat-chip';
+        chip.textContent = label;
+        chip.addEventListener('click', () => sendUserMessage(label));
+        suggestionsEl.appendChild(chip);
+      });
+    };
+
+    const respond = userText => {
+      const delay = prefersReducedMotion ? 0 : 450 + Math.random() * 350;
+      const typingEl = addTyping();
+      setTimeout(() => {
+        typingEl.remove();
+        addMessage(chatMatch(userText), 'bot');
+      }, delay);
+    };
+
+    function sendUserMessage(text) {
+      const trimmed = text.trim();
+      if (!trimmed) return;
+      addMessage(trimmed, 'user');
+      input.value = '';
+      respond(trimmed);
+    }
+
+    const openChat = () => {
+      widget.classList.add('is-open');
+      launcher.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+      if (!started) {
+        started = true;
+        addMessage(`Hey! I'm the Ken Suya assistant. Ask me about the menu, hours, delivery, or say "order" to jump straight to WhatsApp.`, 'bot');
+        renderSuggestions(CHAT_SUGGESTIONS);
+      }
+      setTimeout(() => input.focus(), 250);
+    };
+
+    const closeChat = () => {
+      widget.classList.remove('is-open');
+      launcher.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+    };
+
+    launcher.addEventListener('click', () => {
+      widget.classList.contains('is-open') ? closeChat() : openChat();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && widget.classList.contains('is-open')) closeChat();
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      sendUserMessage(input.value);
+    });
+  })();
+
   /* ─── MENU CARD POINTER TILT ─── */
   if (!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('.menu-card').forEach(card => {

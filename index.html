@@ -9,7 +9,7 @@
 <meta name="description" content="Ken Suya is Birmingham's suya specialist — beef, chicken and lamb suya hand-rolled in signature yaji spice and grilled fresh to order. Party platters, collection & delivery across Birmingham. Call or WhatsApp +44 7960 235758 to order." />
 <meta name="keywords" content="suya Birmingham, yaji spice, beef suya, chicken suya, lamb suya, suya near me, party platters Birmingham, grilled skewers Birmingham, suya delivery Birmingham, suya catering Birmingham" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0D3B15" />
+<meta name="theme-color" content="#2A1810" />
 <meta name="author" content="Ken Suya" />
 <!-- TODO: replace with the real production domain before launch -->
 <link rel="canonical" href="https://www.kensuya.co.uk/" />
@@ -185,6 +185,12 @@
     <symbol id="icon-skewer" viewBox="0 0 24 24"><path d="M3 21 21 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="7.5" y="10.5" width="4" height="4" rx="1" transform="rotate(45 9.5 12.5)" fill="currentColor"/><rect x="11.5" y="6.5" width="4" height="4" rx="1" transform="rotate(45 13.5 8.5)" fill="currentColor"/><rect x="3.5" y="14.5" width="4" height="4" rx="1" transform="rotate(45 5.5 16.5)" fill="currentColor"/></symbol>
     <symbol id="icon-drumstick" viewBox="0 0 24 24"><path d="M14 10c2.5-2.5 6-3 7.5-1.5S22 13 19.5 15.5c-1 1-2.2 1.5-3.3 1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14.5 9.5c-2-2-5.5-1.7-7.8.6-2.6 2.6-3.2 6-1.4 7.8s5.2 1.2 7.8-1.4c2.1-2.1 2.5-4.9 1.4-7z" fill="currentColor" stroke="currentColor" stroke-width="1.2"/><path d="m5 19-2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="icon-herb" viewBox="0 0 24 24"><path d="M12 21V9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 9C12 9 5 9.5 5 4c5.5 0 7 4.2 7 5z" fill="currentColor"/><path d="M12 13c0 0 7 .5 7-5-5.5 0-7 4.2-7 5z" fill="currentColor"/></symbol>
+    <symbol id="icon-chili-solid" viewBox="0 0 32 24">
+      <path d="M13 3c1.2 1 1.6 2.2.8 3.6" fill="none" stroke="#3A6B2E" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M14 4.2c1-1.4 2.6-2 3.6-1.4-.3 1.3-1.3 2.1-2.4 2.3" fill="#3A6B2E"/>
+      <path d="M13.5 6.6c7 0 14 4 14 10.2 0 4.8-4.4 7.7-9.6 6.4C12.4 21.9 6.6 18 5 13.4 3.4 8.8 6.8 6.6 13.5 6.6z" fill="#C1442D"/>
+      <path d="M8.5 9.4c3.4-1.4 8-1 11 1.4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
 
     <filter id="heatShimmer" x="-20%" y="-20%" width="140%" height="140%">
       <feTurbulence type="fractalNoise" numOctaves="2" seed="4" result="turb">
@@ -246,7 +252,7 @@
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section id="hero" class="section--dark" aria-label="Introduction">
-    <div class="hero-photo" aria-hidden="true"><img src="assets/images/suya-wide.webp" alt="" loading="eager" /></div>
+    <div class="hero-photo" aria-hidden="true"><img src="assets/images/suya-wide.webp" alt="" loading="eager" onerror="this.style.display='none'" /></div>
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-grid">
 
@@ -279,8 +285,12 @@
         <div class="hero-badge-plate">
           <div class="brand-badge" aria-hidden="true">
             <span class="brand-badge-shine"></span>
+            <span class="brand-badge-spark brand-badge-spark--1"></span>
+            <span class="brand-badge-spark brand-badge-spark--2"></span>
+            <span class="brand-badge-spark brand-badge-spark--3"></span>
             <span class="brand-badge-text">Ken Suya</span>
-            <svg width="30" height="30" class="brand-badge-icon"><use href="#icon-pepper"/></svg>
+            <svg width="42" height="32" class="brand-badge-icon"><use href="#icon-chili-solid"/></svg>
+            <span class="brand-badge-tagline">Cow-towing to your tastes</span>
           </div>
         </div>
         <div class="badge-ring" style="width:120%; height:120%; top:-10%; left:-10%;"></div>
@@ -343,8 +353,9 @@
         <div class="accent-ring" aria-hidden="true"></div>
         <div class="accent-block" aria-hidden="true"></div>
         <div class="photo-block ratio-square">
-          <img src="assets/images/suya-closeup.webp" alt="Close-up of grilled suya with onion and tomato" loading="lazy" />
+          <img src="assets/images/suya-closeup.webp" alt="Close-up of grilled suya with onion and tomato" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')" />
           <span class="photo-caption">Fresh Off The Grill</span>
+          <span class="photo-icon" aria-hidden="true"><svg width="40" height="40"><use href="#icon-skewer"/></svg></span>
         </div>
       </div>
 
@@ -462,8 +473,9 @@
       <div class="exp-visual reveal reveal-d1">
         <div class="accent-ring" aria-hidden="true"></div>
         <div class="photo-block ratio-wide">
-          <img src="assets/images/suya-plate.webp" alt="Suya skewers with onion and tomato on flatbread" loading="lazy" />
+          <img src="assets/images/suya-plate.webp" alt="Suya skewers with onion and tomato on flatbread" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')" />
           <span class="photo-caption">Straight From The Fire</span>
+          <span class="photo-icon" aria-hidden="true"><svg width="40" height="40"><use href="#icon-flame"/></svg></span>
         </div>
       </div>
     </div>
@@ -471,12 +483,14 @@
     <div class="container" style="margin-top:3rem;">
       <div class="reviews-track reveal" style="grid-template-columns:repeat(2,1fr);">
         <div class="photo-block ratio-square" style="margin:0;">
-          <img src="assets/images/chili-icon.webp" alt="Ken Suya chili icon" loading="lazy" />
+          <img src="assets/images/chili-icon.webp" alt="Ken Suya chili icon" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')" />
           <span class="photo-caption">The Heat</span>
+          <span class="photo-icon" aria-hidden="true"><svg width="40" height="40"><use href="#icon-chili-solid"/></svg></span>
         </div>
         <div class="photo-block ratio-square" style="margin:0;">
-          <img src="assets/images/suya-wide.webp" alt="Suya skewers with onion and tomato on flatbread" loading="lazy" />
+          <img src="assets/images/suya-wide.webp" alt="Suya skewers with onion and tomato on flatbread" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')" />
           <span class="photo-caption">The Full Spread</span>
+          <span class="photo-icon" aria-hidden="true"><svg width="40" height="40"><use href="#icon-users"/></svg></span>
         </div>
       </div>
     </div>
@@ -584,7 +598,7 @@
           <div class="loc-map-grid" aria-hidden="true"></div>
           <div class="loc-map-glow" aria-hidden="true"></div>
           <div class="loc-pin" aria-hidden="true">
-            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#0D3B15" stroke-width="2" class="icon-flicker"><use href="#icon-flame"/></svg></div>
+            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#2A1810" stroke-width="2" class="icon-flicker"><use href="#icon-flame"/></svg></div>
           </div>
           <div class="loc-map-label">
             <span class="name">Ken Suya</span>
@@ -703,7 +717,7 @@
       <div class="brand-badge brand-badge--small" aria-hidden="true">
         <span class="brand-badge-shine"></span>
         <span class="brand-badge-text">Ken Suya</span>
-        <svg width="20" height="20" class="brand-badge-icon"><use href="#icon-pepper"/></svg>
+        <svg width="26" height="20" class="brand-badge-icon"><use href="#icon-chili-solid"/></svg>
       </div>
       <h2 class="display reveal">Your Suya Is One <span class="accent">Message</span> Away.</h2>
       <div class="final-cta-actions reveal reveal-d1">

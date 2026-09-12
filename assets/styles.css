@@ -189,10 +189,30 @@ ul { list-style: none; }
   white-space: nowrap;
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
   min-height: 52px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn:hover::before { transition: transform 0.75s var(--ease); transform: translateX(120%); }
+.btn > * { position: relative; z-index: 2; }
 
 .btn:hover { transform: translateY(-3px); }
 .btn:active { transform: translateY(-1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::before { display: none; }
+}
 
 .btn-primary {
   background: var(--red);
@@ -311,6 +331,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   position: relative;
   padding: 0.4rem 0.1rem;
+  transition: color 0.2s var(--ease);
 }
 
 .nav-links a::after {
@@ -324,7 +345,26 @@ ul { list-style: none; }
 }
 
 .nav-links a:hover::after,
-.nav-links a:focus-visible::after { right: 0; }
+.nav-links a:focus-visible::after,
+.nav-links a.is-active::after { right: 0; }
+
+.nav-links a.is-active { color: var(--gold); }
+
+.scroll-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--red));
+  transition: width 0.1s linear;
+}
 
 .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
 .nav-cta { display: none; }
@@ -1005,24 +1045,31 @@ ul { list-style: none; }
 
 .menu-card:hover .menu-card-bg { transform: scale(1.06); }
 
-.menu-card--hero .menu-card-bg { background: radial-gradient(circle at 30% 25%, rgba(206,17,38,0.55), transparent 55%), radial-gradient(circle at 80% 85%, rgba(252,209,22,0.4), transparent 55%), linear-gradient(160deg, #301813, #1C0906); }
-.menu-card--tall .menu-card-bg { background: radial-gradient(circle at 60% 20%, rgba(30,107,18,0.55), transparent 60%), linear-gradient(160deg, #28120D, #1C0906); }
-.menu-card--wide .menu-card-bg,
-.menu-card--small .menu-card-bg,
-.menu-card--third .menu-card-bg { background: radial-gradient(circle at 25% 30%, rgba(252,209,22,0.35), transparent 55%), linear-gradient(160deg, #2A140F, #1C0906); }
+.menu-card--beef .menu-card-bg { background: radial-gradient(circle at 30% 25%, rgba(206,17,38,0.55), transparent 55%), radial-gradient(circle at 80% 85%, rgba(252,209,22,0.4), transparent 55%), linear-gradient(160deg, #301813, #1C0906); }
+.menu-card--lamb .menu-card-bg { background: radial-gradient(circle at 60% 20%, rgba(30,107,18,0.5), transparent 60%), radial-gradient(circle at 20% 90%, rgba(217,164,0,0.35), transparent 55%), linear-gradient(160deg, #28120D, #1C0906); }
+.menu-card--chicken .menu-card-bg { background: radial-gradient(circle at 25% 30%, rgba(252,209,22,0.4), transparent 55%), linear-gradient(160deg, #2A140F, #1C0906); }
+.menu-card--party .menu-card-bg { background: radial-gradient(circle at 70% 25%, rgba(46,138,60,0.45), transparent 55%), linear-gradient(160deg, #17240F, #101B0B); }
+.menu-card--spicy .menu-card-bg { background: radial-gradient(circle at 30% 70%, rgba(206,17,38,0.5), transparent 55%), linear-gradient(160deg, #300a0a, #1C0906); }
 
-.menu-card-bg img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-  mix-blend-mode: luminosity;
+.menu-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-bottom: 0.85rem;
+  color: var(--maroon);
+  background: var(--gold);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  transition: transform 0.35s var(--ease);
 }
 
-.menu-card-bg.has-photo { background: linear-gradient(160deg, #301813, #1C0906); }
-.menu-card-bg.has-photo img { mix-blend-mode: normal; opacity: 1; }
+.menu-card--lamb .menu-card-icon,
+.menu-card--party .menu-card-icon { background: var(--green); color: var(--cream); }
+.menu-card--spicy .menu-card-icon { background: var(--red); color: var(--cream); }
+
+.menu-card:hover .menu-card-icon { transform: scale(1.12) rotate(-6deg); }
 
 .menu-card::after {
   content: '';

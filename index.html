@@ -9,7 +9,7 @@
 <meta name="description" content="Ken Suya is Birmingham's suya specialist — beef, chicken and lamb suya hand-rolled in signature yaji spice and grilled fresh to order. Party platters, collection & delivery across Birmingham. Call or WhatsApp +44 7960 235758 to order." />
 <meta name="keywords" content="suya Birmingham, yaji spice, beef suya, chicken suya, lamb suya, suya near me, party platters Birmingham, grilled skewers Birmingham, suya delivery Birmingham, suya catering Birmingham" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#2A1810" />
+<meta name="theme-color" content="#0F3D1B" />
 <meta name="author" content="Ken Suya" />
 <!-- TODO: replace with the real production domain before launch -->
 <link rel="canonical" href="https://www.kensuya.co.uk/" />
@@ -158,7 +158,7 @@
 <link rel="preload" href="assets/fonts/baloo2-variable.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/nunitosans-variable.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/images/suya-wide.webp" as="image" type="image/webp" fetchpriority="high" />
-<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/styles.css?v=4" />
 </head>
 <body>
 
@@ -206,7 +206,8 @@
   <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
   <div class="container nav-inner">
     <a href="#hero" class="nav-brand" aria-label="Ken Suya — Home">
-      <span class="brand-mark"><svg width="20" height="20" class="icon-flicker"><use href="#icon-flame"/></svg>Ken Suya</span>
+      <img src="assets/images/ken-suya-badge.webp" alt="Ken Suya" class="brand-mark-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex'" />
+      <span class="brand-mark" style="display:none;"><svg width="20" height="20" class="icon-flicker"><use href="#icon-flame"/></svg>Ken Suya</span>
       <span class="nav-tagline">Cow-towing to your tastes</span>
     </a>
 
@@ -283,7 +284,8 @@
         <div class="smoke-wisps"></div>
         <div class="hero-flame-glow"></div>
         <div class="hero-badge-plate">
-          <div class="brand-badge" aria-hidden="true">
+          <img src="assets/images/ken-suya-logo.webp" alt="Ken Suya — Cow-towing to your tastes" class="brand-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+          <div class="brand-badge" aria-hidden="true" style="display:none;">
             <span class="brand-badge-shine"></span>
             <span class="brand-badge-spark brand-badge-spark--1"></span>
             <span class="brand-badge-spark brand-badge-spark--2"></span>
@@ -598,7 +600,7 @@
           <div class="loc-map-grid" aria-hidden="true"></div>
           <div class="loc-map-glow" aria-hidden="true"></div>
           <div class="loc-pin" aria-hidden="true">
-            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#2A1810" stroke-width="2" class="icon-flicker"><use href="#icon-flame"/></svg></div>
+            <div class="loc-pin-dot"><svg width="22" height="22" fill="none" stroke="#0F3D1B" stroke-width="2" class="icon-flicker"><use href="#icon-flame"/></svg></div>
           </div>
           <div class="loc-map-label">
             <span class="name">Ken Suya</span>
@@ -714,10 +716,13 @@
   <section class="final-cta section--dark" id="final">
     <div class="final-cta-bg" aria-hidden="true"></div>
     <div class="container final-cta-inner">
-      <div class="brand-badge brand-badge--small" aria-hidden="true">
-        <span class="brand-badge-shine"></span>
-        <span class="brand-badge-text">Ken Suya</span>
-        <svg width="26" height="20" class="brand-badge-icon"><use href="#icon-chili-solid"/></svg>
+      <div class="brand-badge--small-wrap">
+        <img src="assets/images/ken-suya-badge.webp" alt="Ken Suya" class="brand-badge-img brand-badge-img--small" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="brand-badge brand-badge--small" aria-hidden="true" style="display:none;">
+          <span class="brand-badge-shine"></span>
+          <span class="brand-badge-text">Ken Suya</span>
+          <svg width="26" height="20" class="brand-badge-icon"><use href="#icon-chili-solid"/></svg>
+        </div>
       </div>
       <h2 class="display reveal">Your Suya Is One <span class="accent">Message</span> Away.</h2>
       <div class="final-cta-actions reveal reveal-d1">
@@ -739,7 +744,8 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand-row">
-          <span class="brand-mark"><svg width="18" height="18" class="icon-flicker"><use href="#icon-flame"/></svg>Ken Suya</span>
+          <img src="assets/images/ken-suya-badge.webp" alt="Ken Suya" class="brand-mark-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex'" />
+          <span class="brand-mark" style="display:none;"><svg width="18" height="18" class="icon-flicker"><use href="#icon-flame"/></svg>Ken Suya</span>
           <span>Cow-towing to your tastes</span>
         </div>
         <p>Hand-rolled suya, grilled fresh and delivered across Birmingham. Beef, chicken, lamb — no shortcuts, ever.</p>
@@ -828,6 +834,6 @@
   </button>
 </div>
 
-<script src="assets/script.js" defer></script>
+<script src="assets/script.js?v=4" defer></script>
 </body>
 </html>

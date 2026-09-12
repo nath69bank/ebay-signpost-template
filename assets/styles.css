@@ -258,11 +258,7 @@ ul { list-style: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream);
-  border-radius: 12px;
-  padding: 4px 8px;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(13,59,21,0.25);
 }
 
 .logo-mark { display: block; width: auto; }
@@ -577,10 +573,6 @@ ul { list-style: none; }
 
 .hero-sticker {
   width: 100%;
-  background: var(--cream);
-  border-radius: 28px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow-lg);
   display: flex;
 }
 

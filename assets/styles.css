@@ -661,11 +661,6 @@ ul { list-style: none; }
   50% { transform: translateY(-14px) rotate(1deg); }
 }
 
-.hero-sticker {
-  width: 100%;
-  display: flex;
-}
-
 .hero-flame-glow {
   position: absolute;
   width: 60%;

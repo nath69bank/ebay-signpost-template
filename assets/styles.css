@@ -215,16 +215,16 @@ ul { list-style: none; }
 .btn-primary {
   background: var(--red);
   color: var(--cream);
-  box-shadow: 0 8px 22px rgba(206,17,38,0.35);
+  box-shadow: 0 4px 10px rgba(156,12,28,0.28);
 }
-.btn-primary:hover { background: var(--red-dark); box-shadow: 0 12px 28px rgba(206,17,38,0.45); }
+.btn-primary:hover { background: var(--red-dark); box-shadow: 0 6px 14px rgba(156,12,28,0.35); }
 
 .btn-gold {
   background: var(--gold);
   color: var(--maroon);
-  box-shadow: 0 8px 22px rgba(245,183,0,0.4);
+  box-shadow: 0 4px 10px rgba(150,110,0,0.25);
 }
-.btn-gold:hover { background: var(--gold-dark); box-shadow: 0 12px 28px rgba(245,183,0,0.5); }
+.btn-gold:hover { background: var(--gold-dark); box-shadow: 0 6px 14px rgba(150,110,0,0.32); }
 
 .btn-outline {
   background: transparent;
@@ -1086,6 +1086,9 @@ ul { list-style: none; }
   gap: 1.25rem;
 }
 
+.menu-showcase--even { align-items: stretch; }
+.menu-showcase--even .menu-card { height: 100%; }
+
 @media (min-width: 768px) {
   .menu-showcase {
     grid-template-columns: repeat(6, 1fr);
@@ -1129,6 +1132,7 @@ ul { list-style: none; }
 .menu-card--chicken .menu-card-bg { background: radial-gradient(circle at 25% 30%, rgba(245,183,0,0.16), transparent 55%); }
 .menu-card--party .menu-card-bg { background: radial-gradient(circle at 70% 25%, rgba(27,138,61,0.14), transparent 55%); }
 .menu-card--spicy .menu-card-bg { background: radial-gradient(circle at 30% 70%, rgba(206,17,38,0.16), transparent 55%); }
+.menu-card--corn .menu-card-bg { background: radial-gradient(circle at 40% 30%, rgba(245,183,0,0.18), transparent 55%); }
 
 .menu-card-icon {
   display: inline-flex;
@@ -1594,7 +1598,7 @@ ul { list-style: none; }
 .social-icon {
   width: 42px; height: 42px;
   border-radius: 50%;
-  background: var(--maroon);
+  background: var(--red);
   color: var(--cream);
   display: flex;
   align-items: center;
@@ -1602,7 +1606,7 @@ ul { list-style: none; }
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
-.social-icon:hover { background: var(--red); transform: translateY(-3px); }
+.social-icon:hover { background: var(--red-dark); transform: translateY(-3px); }
 
 .social-icon--wa { background: var(--green); }
 .social-icon--wa:hover { background: var(--green-dark); }

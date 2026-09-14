@@ -179,7 +179,7 @@
 <link rel="preload" href="assets/fonts/baloo2-variable.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/nunitosans-variable.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/images/suya-wide.webp" as="image" type="image/webp" fetchpriority="high" />
-<link rel="stylesheet" href="assets/styles.css?v=12" />
+<link rel="stylesheet" href="assets/styles.css?v=13" />
 </head>
 <body>
 
@@ -200,6 +200,7 @@
     <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17.5" cy="9" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.8 20c.2-2.1 1.6-3.7 3.7-4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="icon-insta" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
     <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.4 8.6c-.3.9-.2 2 .7 3.4 1 1.5 2.2 2.3 3.7 2.8 1 .3 1.7.1 2.1-.6l.3-.6c.2-.3 0-.6-.3-.8l-1.3-.7c-.3-.2-.6-.1-.8.1l-.3.4c-.6-.2-1.2-.6-1.7-1.1-.5-.5-.9-1.1-1.1-1.7l.4-.3c.2-.2.3-.5.1-.8l-.7-1.3c-.2-.3-.5-.4-.8-.3l-.3.5z" fill="currentColor"/></symbol>
+    <symbol id="icon-basket" viewBox="0 0 24 24"><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 8h12l-1.1 10.3a2 2 0 0 1-2 1.7H9.1a2 2 0 0 1-2-1.7L6 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 11.5v5M14.5 11.5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
     <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.8-4.3 6.4-.6z" fill="currentColor"/></symbol>
@@ -244,6 +245,10 @@
     </nav>
 
     <div class="nav-actions">
+      <button type="button" id="basket-toggle" class="basket-toggle" aria-expanded="false" aria-controls="basket-panel" aria-label="View basket">
+        <svg width="20" height="20"><use href="#icon-basket"/></svg>
+        <span class="basket-badge" id="basket-badge" hidden>0</span>
+      </button>
       <a href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20place%20an%20order%20please." target="_blank" rel="noopener noreferrer" class="btn btn-gold nav-cta">Order Now</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -262,6 +267,10 @@
     <li><a href="#site-footer">Contact</a></li>
   </ul>
   <div class="mobile-menu-footer">
+    <button type="button" id="basket-toggle-mobile" class="btn btn-outline btn-lg basket-toggle-mobile" aria-controls="basket-panel">
+      <svg width="18" height="18"><use href="#icon-basket"/></svg> View Basket
+      <span class="basket-badge" id="basket-badge-mobile" hidden>0</span>
+    </button>
     <a href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20place%20an%20order%20please." target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">Order Now</a>
     <div class="mobile-social">
       <a href="https://instagram.com/KenSuya" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="KenSuya on Instagram"><svg width="18" height="18"><use href="#icon-insta"/></svg></a>
@@ -405,7 +414,7 @@
       </div>
 
       <div class="menu-showcase menu-showcase--even">
-        <a class="menu-card menu-card--third menu-card--beef reveal" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Beef%20Suya%20%28%C2%A312.00%29%20please." target="_blank" rel="noopener noreferrer">
+        <div class="menu-card menu-card--third menu-card--beef reveal" data-item-id="beef">
           <div class="menu-card-bg" aria-hidden="true"></div>
           <div class="menu-card-content">
             <span class="menu-card-icon"><svg width="22" height="22"><use href="#icon-skewer"/></svg></span>
@@ -413,11 +422,14 @@
             <h3>Beef Suya</h3>
             <p>Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame. The one that started it all.</p>
             <div class="menu-card-price"><strong>£12.00</strong><svg width="20" height="20" class="icon-flicker"><use href="#icon-flame"/></svg></div>
-            <span class="menu-card-cta"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Order via WhatsApp</span>
+            <div class="menu-card-actions">
+              <button type="button" class="menu-card-add" data-add-item="beef"><svg width="14" height="14"><use href="#icon-basket"/></svg>Add to Basket</button>
+              <a class="menu-card-cta" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Beef%20Suya%20%28%C2%A312.00%29%20please." target="_blank" rel="noopener noreferrer"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Quick Order</a>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="menu-card menu-card--third menu-card--lamb reveal reveal-d1" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Lamb%20%28%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer">
+        <div class="menu-card menu-card--third menu-card--lamb reveal reveal-d1" data-item-id="lamb">
           <div class="menu-card-bg" aria-hidden="true"></div>
           <div class="menu-card-content">
             <span class="menu-card-icon"><svg width="22" height="22"><use href="#icon-herb"/></svg></span>
@@ -425,11 +437,14 @@
             <h3>Lamb</h3>
             <p>Tender lamb, double-dusted in yaji, char-grilled till the edges catch. Rich, smoky, no notes.</p>
             <div class="menu-card-price"><strong>£10.00</strong></div>
-            <span class="menu-card-cta"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Order via WhatsApp</span>
+            <div class="menu-card-actions">
+              <button type="button" class="menu-card-add" data-add-item="lamb"><svg width="14" height="14"><use href="#icon-basket"/></svg>Add to Basket</button>
+              <a class="menu-card-cta" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Lamb%20%28%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Quick Order</a>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="menu-card menu-card--third menu-card--chicken reveal reveal-d2" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Chopped%20Chicken%20%28%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer">
+        <div class="menu-card menu-card--third menu-card--chicken reveal reveal-d2" data-item-id="chicken-chopped">
           <div class="menu-card-bg" aria-hidden="true"></div>
           <div class="menu-card-content">
             <span class="menu-card-icon"><svg width="22" height="22"><use href="#icon-drumstick"/></svg></span>
@@ -437,11 +452,14 @@
             <h3>Chopped Chicken</h3>
             <p>Juicy chicken, chopped and tossed in yaji, grilled hot and finished with fresh onion and tomato.</p>
             <div class="menu-card-price"><strong>£10.00</strong></div>
-            <span class="menu-card-cta"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Order via WhatsApp</span>
+            <div class="menu-card-actions">
+              <button type="button" class="menu-card-add" data-add-item="chicken-chopped"><svg width="14" height="14"><use href="#icon-basket"/></svg>Add to Basket</button>
+              <a class="menu-card-cta" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Chopped%20Chicken%20%28%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Quick Order</a>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="menu-card menu-card--third menu-card--party reveal reveal-d3" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Chicken%20Skewers%20%285%20for%20%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer">
+        <div class="menu-card menu-card--third menu-card--party reveal reveal-d3" data-item-id="chicken-skewers">
           <div class="menu-card-bg" aria-hidden="true"></div>
           <div class="menu-card-content">
             <span class="menu-card-icon"><svg width="22" height="22"><use href="#icon-users"/></svg></span>
@@ -449,11 +467,14 @@
             <h3>Chicken Skewers</h3>
             <p>Five skewers of chicken, hand-rolled in yaji and grilled fresh, built for sharing.</p>
             <div class="menu-card-price"><strong>5 for £10.00</strong></div>
-            <span class="menu-card-cta"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Order via WhatsApp</span>
+            <div class="menu-card-actions">
+              <button type="button" class="menu-card-add" data-add-item="chicken-skewers"><svg width="14" height="14"><use href="#icon-basket"/></svg>Add to Basket</button>
+              <a class="menu-card-cta" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Chicken%20Skewers%20%285%20for%20%C2%A310.00%29%20please." target="_blank" rel="noopener noreferrer"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Quick Order</a>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="menu-card menu-card--third menu-card--spicy reveal reveal-d4" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Plantain%20%28%C2%A32.50%20per%20portion%29%20please." target="_blank" rel="noopener noreferrer">
+        <div class="menu-card menu-card--third menu-card--spicy reveal reveal-d4" data-item-id="plantain">
           <div class="menu-card-bg" aria-hidden="true"></div>
           <div class="menu-card-content">
             <span class="menu-card-icon"><svg width="22" height="22"><use href="#icon-herb"/></svg></span>
@@ -461,9 +482,12 @@
             <h3>Plantain</h3>
             <p>Sweet fried plantain, caramelised at the edges for the perfect cool-down side.</p>
             <div class="menu-card-price"><strong>£2.50</strong><span style="font-size:0.7rem; color:var(--ink-soft); text-transform:none; font-weight:600;">per portion</span></div>
-            <span class="menu-card-cta"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Order via WhatsApp</span>
+            <div class="menu-card-actions">
+              <button type="button" class="menu-card-add" data-add-item="plantain"><svg width="14" height="14"><use href="#icon-basket"/></svg>Add to Basket</button>
+              <a class="menu-card-cta" href="https://wa.me/447863337662?text=Hi%21%20I%27d%20like%20to%20order%20the%20Plantain%20%28%C2%A32.50%20per%20portion%29%20please." target="_blank" rel="noopener noreferrer"><svg width="14" height="14"><use href="#icon-whatsapp"/></svg>Quick Order</a>
+            </div>
           </div>
-        </a>
+        </div>
       </div>
 
       <div class="menu-note reveal">
@@ -840,6 +864,32 @@
   </button>
 </div>
 
-<script src="assets/script.js?v=12" defer></script>
+<!-- ═══════════════ BASKET DRAWER ═══════════════ -->
+<div id="basket-widget">
+  <div class="basket-overlay" id="basket-overlay"></div>
+  <div id="basket-panel" role="dialog" aria-label="Your basket" aria-hidden="true">
+    <div class="basket-header">
+      <span class="basket-header-title"><svg width="18" height="18"><use href="#icon-basket"/></svg> Your Basket</span>
+      <button type="button" id="basket-close" aria-label="Close basket">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="basket-body" id="basket-body">
+      <p class="basket-empty" id="basket-empty">Your basket is empty. Add something tasty from the menu to get started.</p>
+      <ul class="basket-items" id="basket-items"></ul>
+    </div>
+    <div class="basket-footer" id="basket-footer" hidden>
+      <label class="basket-notes-label" for="basket-notes">Notes (collection time, postcode, allergies)</label>
+      <input type="text" id="basket-notes" class="basket-notes-input" placeholder="Optional" autocomplete="off" />
+      <div class="basket-total-row"><span>Total</span><strong id="basket-total">£0.00</strong></div>
+      <button type="button" id="basket-checkout" class="btn btn-gold btn-lg basket-checkout-btn">
+        <svg width="16" height="16"><use href="#icon-whatsapp"/></svg> Checkout via WhatsApp
+      </button>
+      <button type="button" id="basket-clear" class="basket-clear-btn">Clear Basket</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/script.js?v=13" defer></script>
 </body>
 </html>

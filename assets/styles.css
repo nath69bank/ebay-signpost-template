@@ -289,9 +289,7 @@ ul { list-style: none; }
 .brand-badge-img {
   position: relative;
   width: 100%;
-  aspect-ratio: 7 / 4;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
   filter: drop-shadow(0 18px 34px rgba(0,0,0,0.4));
 }
 

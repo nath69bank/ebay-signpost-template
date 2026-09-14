@@ -103,6 +103,15 @@
     });
   }
 
+  /* ─── CHAT WIDGET (hidden over the hero so it can't sit on top of the CTA buttons) ─── */
+  const chatWidget = document.getElementById('chat-widget');
+  if (chatWidget && hero && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      chatWidget.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    io.observe(hero);
+  }
+
   /* ─── SMOOTH ANCHOR SCROLL ─── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {

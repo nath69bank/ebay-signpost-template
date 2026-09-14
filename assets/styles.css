@@ -1863,6 +1863,15 @@ footer {
 .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 .footer-legal a:hover { color: var(--red); }
 
+.footer-credit {
+  text-align: center;
+  padding: 0.9rem 0 0.4rem;
+  border-top: 1px solid rgba(36,22,8,0.08);
+}
+.footer-credit p { font-size: 0.72rem; color: var(--ink-soft); }
+.footer-credit a { color: var(--ink-soft); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.footer-credit a:hover { color: var(--red); }
+
 /* ═══ REVEAL ANIMATIONS ═══ */
 .reveal {
   opacity: 0;

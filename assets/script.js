@@ -235,28 +235,29 @@
   }
 
   /* ─── CHAT ASSISTANT ─── */
-  const WA_LINK = 'https://wa.me/447960235758';
-  const waButton = label => `<a class="chat-wa-btn" href="${WA_LINK}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#icon-whatsapp"/></svg>${label}</a>`;
+  const WA_NUMBER = '447863337662';
+  const waLink = message => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+  const waButton = (label, message) => `<a class="chat-wa-btn" href="${waLink(message)}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#icon-whatsapp"/></svg>${label}</a>`;
 
   const CHAT_KB = [
     { keywords: ['hi', 'hello', 'hey', 'yo', 'sup'], reply: `Hey! I'm the KenSuya assistant. Ask me about the menu, prices, hours, delivery, or say "order" to jump straight to WhatsApp.` },
-    { keywords: ['menu', 'food', 'items', 'options'], reply: `Here's what's on: <br>• Beef Suya: £12.00<br>• Lamb: £10.00<br>• Chopped Chicken: £10.00<br>• Chicken Skewers: 4 for £10.00<br>• Plantain: £2.50 per portion<br>• Corn: £3.00<br>All hand-rolled in our own yaji spice and grilled fresh to order.` },
-    { keywords: ['beef'], reply: `Beef Suya (£12.00) is our signature. Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame.` },
-    { keywords: ['lamb'], reply: `Lamb (£10.00) is tender lamb, double-dusted in yaji, char-grilled till the edges catch. A fan favourite.` },
-    { keywords: ['chicken'], reply: `Chopped Chicken (£10.00) or Chicken Skewers (4 for £10.00): juicy chicken, grilled hot and finished with fresh onion and tomato.` },
-    { keywords: ['plantain'], reply: `Sweet fried plantain (£2.50 per portion), caramelised at the edges for the perfect cool-down side.` },
-    { keywords: ['corn'], reply: `Grilled corn on the cob (£3.00), brushed with butter and a dusting of yaji.` },
-    { keywords: ['party', 'platter', 'catering', 'cater', 'event', 'group', 'wedding', 'birthday'], reply: `We build platters and larger orders for events, a mix of beef, chicken, lamb and sides. ${waButton('Message us your headcount & date')}` },
+    { keywords: ['menu', 'food', 'items', 'options'], reply: `Here's what's on: <br>• Beef Suya: £12.00<br>• Lamb: £10.00<br>• Chopped Chicken: £10.00<br>• Chicken Skewers: 4 for £10.00<br>• Plantain: £2.50 per portion<br>• Corn: £3.00<br>All hand-rolled in our own yaji spice and grilled fresh to order. ${waButton('Order via WhatsApp', `Hi! I chatted with the KenSuya assistant and I'd like to see the full menu and place an order please.`)}` },
+    { keywords: ['beef'], reply: `Beef Suya (£12.00) is our signature. Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame. ${waButton('Order Beef Suya', `Hi! I chatted with the KenSuya assistant and I'd like to order the Beef Suya (£12.00) please.`)}` },
+    { keywords: ['lamb'], reply: `Lamb (£10.00) is tender lamb, double-dusted in yaji, char-grilled till the edges catch. A fan favourite. ${waButton('Order Lamb', `Hi! I chatted with the KenSuya assistant and I'd like to order the Lamb (£10.00) please.`)}` },
+    { keywords: ['chicken'], reply: `Chopped Chicken (£10.00) or Chicken Skewers (4 for £10.00): juicy chicken, grilled hot and finished with fresh onion and tomato. ${waButton('Order Chicken', `Hi! I chatted with the KenSuya assistant and I'd like to order chicken (Chopped Chicken or Skewers) please.`)}` },
+    { keywords: ['plantain'], reply: `Sweet fried plantain (£2.50 per portion), caramelised at the edges for the perfect cool-down side. ${waButton('Order Plantain', `Hi! I chatted with the KenSuya assistant and I'd like to order the Plantain (£2.50 per portion) please.`)}` },
+    { keywords: ['corn'], reply: `Grilled corn on the cob (£3.00), brushed with butter and a dusting of yaji. ${waButton('Order Corn', `Hi! I chatted with the KenSuya assistant and I'd like to order the Corn (£3.00) please.`)}` },
+    { keywords: ['party', 'platter', 'catering', 'cater', 'event', 'group', 'wedding', 'birthday'], reply: `We build platters and larger orders for events, a mix of beef, chicken, lamb and sides. ${waButton('Message us your headcount & date', `Hi! I chatted with the KenSuya assistant about a party platter. Here's my headcount and date: `)}` },
     { keywords: ['hour', 'hours', 'open', 'time', 'closed', 'closing'], reply: `Tue–Thu 16:00–21:00 · Fri–Sat 12:00–23:00 · Sun 13:00–20:00. Closed Mondays.` },
     { keywords: ['where', 'location', 'address', 'find', 'directions'], reply: `Unit 4, Greenfield Business Park, Birmingham, B11 2AA. Collection and delivery only, no dine-in seating.` },
     { keywords: ['deliver', 'delivery', 'collect', 'collection', 'pickup', 'pick up'], reply: `We deliver across Birmingham and also do collection. Just tell us your postcode or pickup time when you order.` },
-    { keywords: ['halal'], reply: `Message us on WhatsApp or Instagram before ordering and we'll happily confirm sourcing for you. ${waButton('Ask about halal sourcing')}` },
-    { keywords: ['order', 'book', 'booking', 'reserve', 'reservation'], reply: `Orders go through WhatsApp, no app or account needed. Tell us what you'd like and we'll confirm price, timing, and collection or delivery. ${waButton('Order on WhatsApp')}` },
-    { keywords: ['contact', 'phone', 'number', 'whatsapp', 'call', 'human', 'person'], reply: `Call or WhatsApp +44 7960 235758. ${waButton('Chat on WhatsApp')}` },
+    { keywords: ['halal'], reply: `Message us on WhatsApp or Instagram before ordering and we'll happily confirm sourcing for you. ${waButton('Ask about halal sourcing', `Hi! I chatted with the KenSuya assistant and I have a question about halal sourcing for my order.`)}` },
+    { keywords: ['order', 'book', 'booking', 'reserve', 'reservation'], reply: `Orders go through WhatsApp, no app or account needed. Tell us what you'd like and we'll confirm price, timing, and collection or delivery. ${waButton('Order on WhatsApp', `Hi! I chatted with the KenSuya assistant and I'd like to place an order please.`)}` },
+    { keywords: ['contact', 'phone', 'number', 'whatsapp', 'call', 'human', 'person'], reply: `Call or WhatsApp +44 7863 337662. ${waButton('Chat on WhatsApp', `Hi! I chatted with the KenSuya assistant and I'd like some help please.`)}` },
     { keywords: ['thanks', 'thank you', 'cheers', 'ta'], reply: `You're welcome! Anything else, menu, hours, or ready to order?` },
   ];
 
-  const CHAT_FALLBACK = `I might not have that one exactly, but the team will! ${waButton('Ask on WhatsApp')}`;
+  const CHAT_FALLBACK = `I might not have that one exactly, but the team will! ${waButton('Ask on WhatsApp', `Hi! I chatted with the KenSuya assistant and I have a question.`)}`;
   const CHAT_SUGGESTIONS = ['Menu & prices', 'Opening hours', 'Delivery area', 'Order now'];
 
   function chatMatch(input) {

@@ -1112,6 +1112,9 @@ ul { list-style: none; }
   justify-content: flex-end;
   padding: 1.5rem;
   transition: transform 0.4s var(--ease);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .menu-card:hover { transform: translateY(-6px); }
@@ -1220,6 +1223,18 @@ ul { list-style: none; }
   font-family: var(--font-display);
   color: var(--ink);
   font-size: 1.15rem;
+}
+
+.menu-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--green);
 }
 
 .menu-note {

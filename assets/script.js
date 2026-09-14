@@ -239,7 +239,7 @@
   const waButton = label => `<a class="chat-wa-btn" href="${WA_LINK}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#icon-whatsapp"/></svg>${label}</a>`;
 
   const CHAT_KB = [
-    { keywords: ['hi', 'hello', 'hey', 'yo', 'sup'], reply: `Hey! I'm the Ken Suya assistant. Ask me about the menu, prices, hours, delivery, or say "order" to jump straight to WhatsApp.` },
+    { keywords: ['hi', 'hello', 'hey', 'yo', 'sup'], reply: `Hey! I'm the KenSuya assistant. Ask me about the menu, prices, hours, delivery, or say "order" to jump straight to WhatsApp.` },
     { keywords: ['menu', 'food', 'items', 'options'], reply: `Here's what's on: <br>• Beef Suya: £12.00<br>• Lamb: £10.00<br>• Chopped Chicken: £10.00<br>• Chicken Skewers: 4 for £10.00<br>• Plantain: £2.50 per portion<br>• Corn: £3.00<br>All hand-rolled in our own yaji spice and grilled fresh to order.` },
     { keywords: ['beef'], reply: `Beef Suya (£12.00) is our signature. Thin-sliced beef, hand-rolled in yaji spice and grilled fast over an open flame.` },
     { keywords: ['lamb'], reply: `Lamb (£10.00) is tender lamb, double-dusted in yaji, char-grilled till the edges catch. A fan favourite.` },
@@ -341,7 +341,7 @@
       panel.setAttribute('aria-hidden', 'false');
       if (!started) {
         started = true;
-        addMessage(`Hey! I'm the Ken Suya assistant. Ask me about the menu, hours, delivery, or say "order" to jump straight to WhatsApp.`, 'bot');
+        addMessage(`Hey! I'm the KenSuya assistant. Ask me about the menu, hours, delivery, or say "order" to jump straight to WhatsApp.`, 'bot');
         renderSuggestions(CHAT_SUGGESTIONS);
       }
       setTimeout(() => input.focus(), 250);

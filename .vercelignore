@@ -1,0 +1,5 @@
+# The full KenSuya site is parked here while the site is in "coming soon"
+# mode. Excluded from deployment entirely so it isn't reachable at any URL.
+# To go live again: git mv site-backup/index.html index.html (and undo the
+# robots.txt / index.html changes made for the coming-soon page).
+site-backup/
